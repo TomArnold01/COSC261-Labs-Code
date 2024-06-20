@@ -1,0 +1,875 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Program
+Rule 1     Program -> Statements
+Rule 2     Statements -> Statement
+Rule 3     Statements -> Statements SEM Statement
+Rule 4     Statement -> If
+Rule 5     Statement -> While
+Rule 6     Statement -> Assignment
+Rule 7     If -> IF Comparison THEN Statements END
+Rule 8     While -> WHILE Comparison DO Statements END
+Rule 9     Assignment -> Id BEC Expression
+Rule 10    Comparison -> Expression Relation Expression
+Rule 11    Relation -> EQ
+Rule 12    Relation -> NEQ
+Rule 13    Relation -> LESS
+Rule 14    Relation -> LEQ
+Rule 15    Relation -> GRTR
+Rule 16    Relation -> GEQ
+Rule 17    Expression -> Expression ADD Expression
+Rule 18    Expression -> Expression SUB Expression
+Rule 19    Expression -> Expression MUL Expression
+Rule 20    Expression -> Expression DIV Expression
+Rule 21    Expression -> LPAR Expression RPAR
+Rule 22    Expression -> NUM
+Rule 23    Expression -> Id
+Rule 24    Id -> ID
+Rule 25    If -> IF Comparison THEN Statements ELSE Statements END
+Rule 26    Read -> READ Id
+Rule 27    Write -> WRITE Expression
+
+Terminals, with rules where they appear
+
+ADD                  : 17
+BEC                  : 9
+DIV                  : 20
+DO                   : 8
+ELSE                 : 25
+END                  : 7 8 25
+EQ                   : 11
+GEQ                  : 16
+GRTR                 : 15
+ID                   : 24
+IF                   : 7 25
+LEQ                  : 14
+LESS                 : 13
+LPAR                 : 21
+MUL                  : 19
+NEQ                  : 12
+NUM                  : 22
+READ                 : 26
+RPAR                 : 21
+SEM                  : 3
+SUB                  : 18
+THEN                 : 7 25
+WHILE                : 8
+WRITE                : 27
+error                : 
+
+Nonterminals, with rules where they appear
+
+Assignment           : 6
+Comparison           : 7 8 25
+Expression           : 9 10 10 17 17 18 18 19 19 20 20 21 27
+Id                   : 9 23 26
+If                   : 4
+Program              : 0
+Read                 : 
+Relation             : 10
+Statement            : 2 3
+Statements           : 1 3 7 8 25 25
+While                : 5
+Write                : 
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Program
+    (1) Program -> . Statements
+    (2) Statements -> . Statement
+    (3) Statements -> . Statements SEM Statement
+    (4) Statement -> . If
+    (5) Statement -> . While
+    (6) Statement -> . Assignment
+    (7) If -> . IF Comparison THEN Statements END
+    (25) If -> . IF Comparison THEN Statements ELSE Statements END
+    (8) While -> . WHILE Comparison DO Statements END
+    (9) Assignment -> . Id BEC Expression
+    (24) Id -> . ID
+
+    IF              shift and go to state 7
+    WHILE           shift and go to state 8
+    ID              shift and go to state 10
+
+    Program                        shift and go to state 1
+    Statements                     shift and go to state 2
+    Statement                      shift and go to state 3
+    If                             shift and go to state 4
+    While                          shift and go to state 5
+    Assignment                     shift and go to state 6
+    Id                             shift and go to state 9
+
+state 1
+
+    (0) S' -> Program .
+
+
+
+state 2
+
+    (1) Program -> Statements .
+    (3) Statements -> Statements . SEM Statement
+
+    $end            reduce using rule 1 (Program -> Statements .)
+    SEM             shift and go to state 11
+
+
+state 3
+
+    (2) Statements -> Statement .
+
+    SEM             reduce using rule 2 (Statements -> Statement .)
+    $end            reduce using rule 2 (Statements -> Statement .)
+    END             reduce using rule 2 (Statements -> Statement .)
+    ELSE            reduce using rule 2 (Statements -> Statement .)
+
+
+state 4
+
+    (4) Statement -> If .
+
+    SEM             reduce using rule 4 (Statement -> If .)
+    $end            reduce using rule 4 (Statement -> If .)
+    END             reduce using rule 4 (Statement -> If .)
+    ELSE            reduce using rule 4 (Statement -> If .)
+
+
+state 5
+
+    (5) Statement -> While .
+
+    SEM             reduce using rule 5 (Statement -> While .)
+    $end            reduce using rule 5 (Statement -> While .)
+    END             reduce using rule 5 (Statement -> While .)
+    ELSE            reduce using rule 5 (Statement -> While .)
+
+
+state 6
+
+    (6) Statement -> Assignment .
+
+    SEM             reduce using rule 6 (Statement -> Assignment .)
+    $end            reduce using rule 6 (Statement -> Assignment .)
+    END             reduce using rule 6 (Statement -> Assignment .)
+    ELSE            reduce using rule 6 (Statement -> Assignment .)
+
+
+state 7
+
+    (7) If -> IF . Comparison THEN Statements END
+    (25) If -> IF . Comparison THEN Statements ELSE Statements END
+    (10) Comparison -> . Expression Relation Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Comparison                     shift and go to state 12
+    Expression                     shift and go to state 13
+    Id                             shift and go to state 16
+
+state 8
+
+    (8) While -> WHILE . Comparison DO Statements END
+    (10) Comparison -> . Expression Relation Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Comparison                     shift and go to state 17
+    Expression                     shift and go to state 13
+    Id                             shift and go to state 16
+
+state 9
+
+    (9) Assignment -> Id . BEC Expression
+
+    BEC             shift and go to state 18
+
+
+state 10
+
+    (24) Id -> ID .
+
+    BEC             reduce using rule 24 (Id -> ID .)
+    ADD             reduce using rule 24 (Id -> ID .)
+    SUB             reduce using rule 24 (Id -> ID .)
+    MUL             reduce using rule 24 (Id -> ID .)
+    DIV             reduce using rule 24 (Id -> ID .)
+    EQ              reduce using rule 24 (Id -> ID .)
+    NEQ             reduce using rule 24 (Id -> ID .)
+    LESS            reduce using rule 24 (Id -> ID .)
+    LEQ             reduce using rule 24 (Id -> ID .)
+    GRTR            reduce using rule 24 (Id -> ID .)
+    GEQ             reduce using rule 24 (Id -> ID .)
+    RPAR            reduce using rule 24 (Id -> ID .)
+    SEM             reduce using rule 24 (Id -> ID .)
+    $end            reduce using rule 24 (Id -> ID .)
+    END             reduce using rule 24 (Id -> ID .)
+    ELSE            reduce using rule 24 (Id -> ID .)
+    THEN            reduce using rule 24 (Id -> ID .)
+    DO              reduce using rule 24 (Id -> ID .)
+
+
+state 11
+
+    (3) Statements -> Statements SEM . Statement
+    (4) Statement -> . If
+    (5) Statement -> . While
+    (6) Statement -> . Assignment
+    (7) If -> . IF Comparison THEN Statements END
+    (25) If -> . IF Comparison THEN Statements ELSE Statements END
+    (8) While -> . WHILE Comparison DO Statements END
+    (9) Assignment -> . Id BEC Expression
+    (24) Id -> . ID
+
+    IF              shift and go to state 7
+    WHILE           shift and go to state 8
+    ID              shift and go to state 10
+
+    Statement                      shift and go to state 19
+    If                             shift and go to state 4
+    While                          shift and go to state 5
+    Assignment                     shift and go to state 6
+    Id                             shift and go to state 9
+
+state 12
+
+    (7) If -> IF Comparison . THEN Statements END
+    (25) If -> IF Comparison . THEN Statements ELSE Statements END
+
+    THEN            shift and go to state 20
+
+
+state 13
+
+    (10) Comparison -> Expression . Relation Expression
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+    (11) Relation -> . EQ
+    (12) Relation -> . NEQ
+    (13) Relation -> . LESS
+    (14) Relation -> . LEQ
+    (15) Relation -> . GRTR
+    (16) Relation -> . GEQ
+
+    ADD             shift and go to state 22
+    SUB             shift and go to state 23
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+    EQ              shift and go to state 26
+    NEQ             shift and go to state 27
+    LESS            shift and go to state 28
+    LEQ             shift and go to state 29
+    GRTR            shift and go to state 30
+    GEQ             shift and go to state 31
+
+    Relation                       shift and go to state 21
+
+state 14
+
+    (21) Expression -> LPAR . Expression RPAR
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 32
+    Id                             shift and go to state 16
+
+state 15
+
+    (22) Expression -> NUM .
+
+    ADD             reduce using rule 22 (Expression -> NUM .)
+    SUB             reduce using rule 22 (Expression -> NUM .)
+    MUL             reduce using rule 22 (Expression -> NUM .)
+    DIV             reduce using rule 22 (Expression -> NUM .)
+    EQ              reduce using rule 22 (Expression -> NUM .)
+    NEQ             reduce using rule 22 (Expression -> NUM .)
+    LESS            reduce using rule 22 (Expression -> NUM .)
+    LEQ             reduce using rule 22 (Expression -> NUM .)
+    GRTR            reduce using rule 22 (Expression -> NUM .)
+    GEQ             reduce using rule 22 (Expression -> NUM .)
+    RPAR            reduce using rule 22 (Expression -> NUM .)
+    SEM             reduce using rule 22 (Expression -> NUM .)
+    $end            reduce using rule 22 (Expression -> NUM .)
+    END             reduce using rule 22 (Expression -> NUM .)
+    ELSE            reduce using rule 22 (Expression -> NUM .)
+    THEN            reduce using rule 22 (Expression -> NUM .)
+    DO              reduce using rule 22 (Expression -> NUM .)
+
+
+state 16
+
+    (23) Expression -> Id .
+
+    ADD             reduce using rule 23 (Expression -> Id .)
+    SUB             reduce using rule 23 (Expression -> Id .)
+    MUL             reduce using rule 23 (Expression -> Id .)
+    DIV             reduce using rule 23 (Expression -> Id .)
+    EQ              reduce using rule 23 (Expression -> Id .)
+    NEQ             reduce using rule 23 (Expression -> Id .)
+    LESS            reduce using rule 23 (Expression -> Id .)
+    LEQ             reduce using rule 23 (Expression -> Id .)
+    GRTR            reduce using rule 23 (Expression -> Id .)
+    GEQ             reduce using rule 23 (Expression -> Id .)
+    RPAR            reduce using rule 23 (Expression -> Id .)
+    SEM             reduce using rule 23 (Expression -> Id .)
+    $end            reduce using rule 23 (Expression -> Id .)
+    END             reduce using rule 23 (Expression -> Id .)
+    ELSE            reduce using rule 23 (Expression -> Id .)
+    THEN            reduce using rule 23 (Expression -> Id .)
+    DO              reduce using rule 23 (Expression -> Id .)
+
+
+state 17
+
+    (8) While -> WHILE Comparison . DO Statements END
+
+    DO              shift and go to state 33
+
+
+state 18
+
+    (9) Assignment -> Id BEC . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Id                             shift and go to state 16
+    Expression                     shift and go to state 34
+
+state 19
+
+    (3) Statements -> Statements SEM Statement .
+
+    SEM             reduce using rule 3 (Statements -> Statements SEM Statement .)
+    $end            reduce using rule 3 (Statements -> Statements SEM Statement .)
+    END             reduce using rule 3 (Statements -> Statements SEM Statement .)
+    ELSE            reduce using rule 3 (Statements -> Statements SEM Statement .)
+
+
+state 20
+
+    (7) If -> IF Comparison THEN . Statements END
+    (25) If -> IF Comparison THEN . Statements ELSE Statements END
+    (2) Statements -> . Statement
+    (3) Statements -> . Statements SEM Statement
+    (4) Statement -> . If
+    (5) Statement -> . While
+    (6) Statement -> . Assignment
+    (7) If -> . IF Comparison THEN Statements END
+    (25) If -> . IF Comparison THEN Statements ELSE Statements END
+    (8) While -> . WHILE Comparison DO Statements END
+    (9) Assignment -> . Id BEC Expression
+    (24) Id -> . ID
+
+    IF              shift and go to state 7
+    WHILE           shift and go to state 8
+    ID              shift and go to state 10
+
+    Statements                     shift and go to state 35
+    Statement                      shift and go to state 3
+    If                             shift and go to state 4
+    While                          shift and go to state 5
+    Assignment                     shift and go to state 6
+    Id                             shift and go to state 9
+
+state 21
+
+    (10) Comparison -> Expression Relation . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 36
+    Id                             shift and go to state 16
+
+state 22
+
+    (17) Expression -> Expression ADD . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 37
+    Id                             shift and go to state 16
+
+state 23
+
+    (18) Expression -> Expression SUB . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 38
+    Id                             shift and go to state 16
+
+state 24
+
+    (19) Expression -> Expression MUL . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 39
+    Id                             shift and go to state 16
+
+state 25
+
+    (20) Expression -> Expression DIV . Expression
+    (17) Expression -> . Expression ADD Expression
+    (18) Expression -> . Expression SUB Expression
+    (19) Expression -> . Expression MUL Expression
+    (20) Expression -> . Expression DIV Expression
+    (21) Expression -> . LPAR Expression RPAR
+    (22) Expression -> . NUM
+    (23) Expression -> . Id
+    (24) Id -> . ID
+
+    LPAR            shift and go to state 14
+    NUM             shift and go to state 15
+    ID              shift and go to state 10
+
+    Expression                     shift and go to state 40
+    Id                             shift and go to state 16
+
+state 26
+
+    (11) Relation -> EQ .
+
+    LPAR            reduce using rule 11 (Relation -> EQ .)
+    NUM             reduce using rule 11 (Relation -> EQ .)
+    ID              reduce using rule 11 (Relation -> EQ .)
+
+
+state 27
+
+    (12) Relation -> NEQ .
+
+    LPAR            reduce using rule 12 (Relation -> NEQ .)
+    NUM             reduce using rule 12 (Relation -> NEQ .)
+    ID              reduce using rule 12 (Relation -> NEQ .)
+
+
+state 28
+
+    (13) Relation -> LESS .
+
+    LPAR            reduce using rule 13 (Relation -> LESS .)
+    NUM             reduce using rule 13 (Relation -> LESS .)
+    ID              reduce using rule 13 (Relation -> LESS .)
+
+
+state 29
+
+    (14) Relation -> LEQ .
+
+    LPAR            reduce using rule 14 (Relation -> LEQ .)
+    NUM             reduce using rule 14 (Relation -> LEQ .)
+    ID              reduce using rule 14 (Relation -> LEQ .)
+
+
+state 30
+
+    (15) Relation -> GRTR .
+
+    LPAR            reduce using rule 15 (Relation -> GRTR .)
+    NUM             reduce using rule 15 (Relation -> GRTR .)
+    ID              reduce using rule 15 (Relation -> GRTR .)
+
+
+state 31
+
+    (16) Relation -> GEQ .
+
+    LPAR            reduce using rule 16 (Relation -> GEQ .)
+    NUM             reduce using rule 16 (Relation -> GEQ .)
+    ID              reduce using rule 16 (Relation -> GEQ .)
+
+
+state 32
+
+    (21) Expression -> LPAR Expression . RPAR
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    RPAR            shift and go to state 41
+    ADD             shift and go to state 22
+    SUB             shift and go to state 23
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+
+
+state 33
+
+    (8) While -> WHILE Comparison DO . Statements END
+    (2) Statements -> . Statement
+    (3) Statements -> . Statements SEM Statement
+    (4) Statement -> . If
+    (5) Statement -> . While
+    (6) Statement -> . Assignment
+    (7) If -> . IF Comparison THEN Statements END
+    (25) If -> . IF Comparison THEN Statements ELSE Statements END
+    (8) While -> . WHILE Comparison DO Statements END
+    (9) Assignment -> . Id BEC Expression
+    (24) Id -> . ID
+
+    IF              shift and go to state 7
+    WHILE           shift and go to state 8
+    ID              shift and go to state 10
+
+    Statements                     shift and go to state 42
+    Statement                      shift and go to state 3
+    If                             shift and go to state 4
+    While                          shift and go to state 5
+    Assignment                     shift and go to state 6
+    Id                             shift and go to state 9
+
+state 34
+
+    (9) Assignment -> Id BEC Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    SEM             reduce using rule 9 (Assignment -> Id BEC Expression .)
+    $end            reduce using rule 9 (Assignment -> Id BEC Expression .)
+    END             reduce using rule 9 (Assignment -> Id BEC Expression .)
+    ELSE            reduce using rule 9 (Assignment -> Id BEC Expression .)
+    ADD             shift and go to state 22
+    SUB             shift and go to state 23
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+
+
+state 35
+
+    (7) If -> IF Comparison THEN Statements . END
+    (25) If -> IF Comparison THEN Statements . ELSE Statements END
+    (3) Statements -> Statements . SEM Statement
+
+    END             shift and go to state 43
+    ELSE            shift and go to state 44
+    SEM             shift and go to state 11
+
+
+state 36
+
+    (10) Comparison -> Expression Relation Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    THEN            reduce using rule 10 (Comparison -> Expression Relation Expression .)
+    DO              reduce using rule 10 (Comparison -> Expression Relation Expression .)
+    ADD             shift and go to state 22
+    SUB             shift and go to state 23
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+
+
+state 37
+
+    (17) Expression -> Expression ADD Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    ADD             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    SUB             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    EQ              reduce using rule 17 (Expression -> Expression ADD Expression .)
+    NEQ             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    LESS            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    LEQ             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    GRTR            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    GEQ             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    RPAR            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    SEM             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    $end            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    END             reduce using rule 17 (Expression -> Expression ADD Expression .)
+    ELSE            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    THEN            reduce using rule 17 (Expression -> Expression ADD Expression .)
+    DO              reduce using rule 17 (Expression -> Expression ADD Expression .)
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+
+  ! MUL             [ reduce using rule 17 (Expression -> Expression ADD Expression .) ]
+  ! DIV             [ reduce using rule 17 (Expression -> Expression ADD Expression .) ]
+  ! ADD             [ shift and go to state 22 ]
+  ! SUB             [ shift and go to state 23 ]
+
+
+state 38
+
+    (18) Expression -> Expression SUB Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    ADD             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    SUB             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    EQ              reduce using rule 18 (Expression -> Expression SUB Expression .)
+    NEQ             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    LESS            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    LEQ             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    GRTR            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    GEQ             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    RPAR            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    SEM             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    $end            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    END             reduce using rule 18 (Expression -> Expression SUB Expression .)
+    ELSE            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    THEN            reduce using rule 18 (Expression -> Expression SUB Expression .)
+    DO              reduce using rule 18 (Expression -> Expression SUB Expression .)
+    MUL             shift and go to state 24
+    DIV             shift and go to state 25
+
+  ! MUL             [ reduce using rule 18 (Expression -> Expression SUB Expression .) ]
+  ! DIV             [ reduce using rule 18 (Expression -> Expression SUB Expression .) ]
+  ! ADD             [ shift and go to state 22 ]
+  ! SUB             [ shift and go to state 23 ]
+
+
+state 39
+
+    (19) Expression -> Expression MUL Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    ADD             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    SUB             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    MUL             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    DIV             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    EQ              reduce using rule 19 (Expression -> Expression MUL Expression .)
+    NEQ             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    LESS            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    LEQ             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    GRTR            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    GEQ             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    RPAR            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    SEM             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    $end            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    END             reduce using rule 19 (Expression -> Expression MUL Expression .)
+    ELSE            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    THEN            reduce using rule 19 (Expression -> Expression MUL Expression .)
+    DO              reduce using rule 19 (Expression -> Expression MUL Expression .)
+
+  ! ADD             [ shift and go to state 22 ]
+  ! SUB             [ shift and go to state 23 ]
+  ! MUL             [ shift and go to state 24 ]
+  ! DIV             [ shift and go to state 25 ]
+
+
+state 40
+
+    (20) Expression -> Expression DIV Expression .
+    (17) Expression -> Expression . ADD Expression
+    (18) Expression -> Expression . SUB Expression
+    (19) Expression -> Expression . MUL Expression
+    (20) Expression -> Expression . DIV Expression
+
+    ADD             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    SUB             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    MUL             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    DIV             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    EQ              reduce using rule 20 (Expression -> Expression DIV Expression .)
+    NEQ             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    LESS            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    LEQ             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    GRTR            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    GEQ             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    RPAR            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    SEM             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    $end            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    END             reduce using rule 20 (Expression -> Expression DIV Expression .)
+    ELSE            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    THEN            reduce using rule 20 (Expression -> Expression DIV Expression .)
+    DO              reduce using rule 20 (Expression -> Expression DIV Expression .)
+
+  ! ADD             [ shift and go to state 22 ]
+  ! SUB             [ shift and go to state 23 ]
+  ! MUL             [ shift and go to state 24 ]
+  ! DIV             [ shift and go to state 25 ]
+
+
+state 41
+
+    (21) Expression -> LPAR Expression RPAR .
+
+    ADD             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    SUB             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    MUL             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    DIV             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    EQ              reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    NEQ             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    LESS            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    LEQ             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    GRTR            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    GEQ             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    RPAR            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    SEM             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    $end            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    END             reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    ELSE            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    THEN            reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+    DO              reduce using rule 21 (Expression -> LPAR Expression RPAR .)
+
+
+state 42
+
+    (8) While -> WHILE Comparison DO Statements . END
+    (3) Statements -> Statements . SEM Statement
+
+    END             shift and go to state 45
+    SEM             shift and go to state 11
+
+
+state 43
+
+    (7) If -> IF Comparison THEN Statements END .
+
+    SEM             reduce using rule 7 (If -> IF Comparison THEN Statements END .)
+    $end            reduce using rule 7 (If -> IF Comparison THEN Statements END .)
+    END             reduce using rule 7 (If -> IF Comparison THEN Statements END .)
+    ELSE            reduce using rule 7 (If -> IF Comparison THEN Statements END .)
+
+
+state 44
+
+    (25) If -> IF Comparison THEN Statements ELSE . Statements END
+    (2) Statements -> . Statement
+    (3) Statements -> . Statements SEM Statement
+    (4) Statement -> . If
+    (5) Statement -> . While
+    (6) Statement -> . Assignment
+    (7) If -> . IF Comparison THEN Statements END
+    (25) If -> . IF Comparison THEN Statements ELSE Statements END
+    (8) While -> . WHILE Comparison DO Statements END
+    (9) Assignment -> . Id BEC Expression
+    (24) Id -> . ID
+
+    IF              shift and go to state 7
+    WHILE           shift and go to state 8
+    ID              shift and go to state 10
+
+    Statements                     shift and go to state 46
+    Statement                      shift and go to state 3
+    If                             shift and go to state 4
+    While                          shift and go to state 5
+    Assignment                     shift and go to state 6
+    Id                             shift and go to state 9
+
+state 45
+
+    (8) While -> WHILE Comparison DO Statements END .
+
+    SEM             reduce using rule 8 (While -> WHILE Comparison DO Statements END .)
+    $end            reduce using rule 8 (While -> WHILE Comparison DO Statements END .)
+    END             reduce using rule 8 (While -> WHILE Comparison DO Statements END .)
+    ELSE            reduce using rule 8 (While -> WHILE Comparison DO Statements END .)
+
+
+state 46
+
+    (25) If -> IF Comparison THEN Statements ELSE Statements . END
+    (3) Statements -> Statements . SEM Statement
+
+    END             shift and go to state 47
+    SEM             shift and go to state 11
+
+
+state 47
+
+    (25) If -> IF Comparison THEN Statements ELSE Statements END .
+
+    SEM             reduce using rule 25 (If -> IF Comparison THEN Statements ELSE Statements END .)
+    $end            reduce using rule 25 (If -> IF Comparison THEN Statements ELSE Statements END .)
+    END             reduce using rule 25 (If -> IF Comparison THEN Statements ELSE Statements END .)
+    ELSE            reduce using rule 25 (If -> IF Comparison THEN Statements ELSE Statements END .)
+
